@@ -44,7 +44,7 @@ namespace Jobtri.Domain.Entities
             SourceJobId = sourceJobId.Trim();
             JobUrl = Guard.ValidHttpUrl(jobUrl, nameof(jobUrl));
             Location = string.IsNullOrWhiteSpace(location) ? null : location.Trim();
-            DatePosted = datePosted;
+            DatePosted = datePosted?.ToUniversalTime();
             FirstSeenAt = DateTimeOffset.UtcNow;
         }
     }
