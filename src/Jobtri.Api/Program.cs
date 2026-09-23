@@ -1,11 +1,10 @@
+using Jobtri.Application;
+using Jobtri.Infrastructure;
 using Jobtri.Infrastructure.Persistence;
 
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddOpenApi();
 
 var connectionString = builder.Configuration.GetConnectionString("JobtriDatabase");
 
@@ -18,6 +17,10 @@ builder.Services.AddDbContext<JobtriDbContext>(options =>
 {
     options.UseNpgsql(connectionString);
 });
+
+// Add services to the container.
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -35,8 +38,3 @@ app.UseHttpsRedirection();
 
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
