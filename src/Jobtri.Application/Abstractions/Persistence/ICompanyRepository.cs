@@ -11,5 +11,6 @@ namespace Jobtri.Application.Abstractions.Persistence
         Task<Company?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
 
         Task<List<Company>> GetAllAsync(CancellationToken cancellationToken = default);
+
     }
 }

@@ -46,4 +46,37 @@ public sealed class CompaniesController : ControllerBase
 
         return Ok(companies);
     }
+
+    [HttpPut("{id}/enable")]
+    public async Task<IActionResult> Enable(int id, CancellationToken cancellationToken)
+    {
+        var result = await _companyService.EnableAsync(id, cancellationToken);
+        if (!result)
+        {
+            return NotFound();
+        }
+        return NoContent();
+    }
+
+    [HttpPut("{id}/disable")]
+    public async Task<IActionResult> Disable(int id, CancellationToken cancellationToken)
+    {
+        var result = await _companyService.DisableAsync(id, cancellationToken);
+        if (!result)
+        {
+            return NotFound();
+        }
+        return NoContent();
+    }
+
+    [HttpPut("{id}/website")]
+    public async Task<IActionResult> UpdateWebsite(int id, string website, CancellationToken cancellationToken)
+    {
+        var result = await _companyService.UpdateWebsiteAsync(id, website, cancellationToken);
+        if (!result)
+        {
+            return NotFound();
+        }
+        return NoContent();
+    }
 }
