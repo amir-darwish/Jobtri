@@ -29,6 +29,15 @@ namespace Jobtri.Domain.Entities
             AtsIdentifier = string.IsNullOrWhiteSpace(atsIdentifier) ? null : atsIdentifier.Trim();
             IsEnabled = true;
         }
+        public void Enable()
+        {
+            IsEnabled = true;
+        }
+
+        public void Disable()
+        {
+            IsEnabled = false;
+        }
 
     }
 }

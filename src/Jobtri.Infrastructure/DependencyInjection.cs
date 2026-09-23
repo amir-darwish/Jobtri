@@ -10,6 +10,7 @@ namespace Jobtri.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<ICompanySourceRepository, CompanySourceRepository>();
 
             return services;
         }
