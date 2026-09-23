@@ -30,5 +30,15 @@ namespace Jobtri.Domain.Entities
             }
             Website = uriResult;
         }
+
+        public void Enable()
+        {
+            IsEnabled = true;
+        }
+
+        public void Disable()
+        {
+            IsEnabled = false;
+        }
     }
 }

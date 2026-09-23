@@ -21,5 +21,15 @@ namespace Jobtri.Application.Companies
 
             return company.Id;
         }
+        
+        public async Task<Company?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        {
+            return await _companyRepository.GetByIdAsync(id, cancellationToken);
+        }
+
+        public async Task<List<Company>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await _companyRepository.GetAllAsync(cancellationToken);
+        }
     }
 }

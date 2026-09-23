@@ -25,4 +25,25 @@ public sealed class CompaniesController : ControllerBase
             Id = id
         });
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
+    {
+        var company = await _companyService.GetByIdAsync(id, cancellationToken);
+
+        if (company == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(company);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    {
+        var companies = await _companyService.GetAllAsync(cancellationToken);
+
+        return Ok(companies);
+    }
 }
