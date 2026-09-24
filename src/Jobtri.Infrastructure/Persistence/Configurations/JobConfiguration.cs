@@ -32,9 +32,16 @@ public sealed class JobConfiguration : IEntityTypeConfiguration<Job>
         builder.Property(job => job.Location)
             .HasMaxLength(200);
 
-        builder.Property(job => job.DatePosted);
+        builder.Property(job => job.Description)
+            .HasColumnType("text");
+
+        builder.Property(job => job.DatePosted)
+            .IsRequired(false);
 
         builder.Property(job => job.FirstSeenAt)
+            .IsRequired();
+
+        builder.Property(job => job.LastSeenAt)
             .IsRequired();
 
         builder.HasIndex(job => new { job.CompanySourceId, job.SourceJobId })

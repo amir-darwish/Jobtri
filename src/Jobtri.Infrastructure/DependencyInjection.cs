@@ -11,6 +11,7 @@ namespace Jobtri.Infrastructure
         {
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanySourceRepository, CompanySourceRepository>();
+            services.AddScoped<IJobRepository, JobRepository>();
 
             return services;
         }

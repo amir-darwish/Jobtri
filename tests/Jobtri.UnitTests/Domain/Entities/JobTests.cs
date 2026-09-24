@@ -14,11 +14,13 @@ namespace Jobtri.UnitTests.Domain.Entities
             var jobUrl = new Uri("https://jobs.atos.net/job/123");
             string location = "Paris, France";
             DateTimeOffset datePosted = new DateTimeOffset(2026, 9, 18, 0, 0, 0, TimeSpan.Zero);
+            string description = "Responsible for developing and maintaining .NET applications.";
 
             var before = DateTimeOffset.UtcNow;
+            DateTimeOffset dateUpdated = new DateTimeOffset(2026, 9, 18, 0, 0, 0, TimeSpan.Zero);
 
             // Act
-            var job = new Job(title, companySourceId, sourceJobId, jobUrl, location, datePosted);
+            var job = new Job(title, companySourceId, sourceJobId, jobUrl, location, description, datePosted);
 
             var after = DateTimeOffset.UtcNow;
 
