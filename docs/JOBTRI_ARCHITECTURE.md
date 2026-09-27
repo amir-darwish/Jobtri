@@ -12,9 +12,20 @@ Planned capabilities are labelled explicitly and are not presented as implemente
 
 ## Project overview
 
-Jobtri is a .NET job-search decision-support backend. Its current code provides a small API for managing companies, company sources, and jobs. The adopted product direction permits direct ATS / official company sources and job boards, with official ATS/company sources preferred when available. Generic scraping is not the primary acquisition strategy. The initial user is the project owner or another developer/user running Jobtri from GitHub.
+Jobtri is a Personal AI Job Assistant for managing a person's job-search workflow. Its current code provides a small API for managing companies, company sources, and jobs. Job aggregation is an enabling capability for that workflow, not the product's core value. The adopted product direction permits direct ATS / official company sources and job boards, with official ATS/company sources preferred when available. Generic scraping is not the primary acquisition strategy. The initial user is one person running Jobtri locally or from GitHub while validating the idea.
 
-The MVP uses manually entered job-search and filtering criteria. CV parsing and CV-based matching are later enhancements after the acquisition/filtering workflow is validated. SaaS architecture, multi-tenancy, complex user management, AI analysis, auto-apply, and advanced learning are not MVP prerequisites. SaaS may be considered later if the workflow proves useful. Human review remains required before applying, and mass auto-apply remains prohibited.
+The MVP is a personal single-user tool with no authentication, multi-user system, roles, subscriptions, or SaaS infrastructure. Its workflow is:
+
+```text
+Job Target / Search Intent
+→ Find Opportunities
+→ Filter Relevant Jobs
+→ Save Interesting Jobs
+→ Track Applications
+→ Assist With Applications
+```
+
+The MVP uses manually entered job-search and filtering criteria. `JobTarget`, `SavedJob`, and application tracking are planned workflow concepts. CV parsing, CV-based matching, AI analysis, advanced learning, and SaaS evolution are later phases after the personal workflow is validated. Human review remains required before applying, and mass auto-apply remains prohibited.
 
 ## Current architecture
 
@@ -118,17 +129,20 @@ Reads follow the reverse path and return domain entities directly from controlle
 
 ## Adopted MVP pipeline — implementation pending
 
-The intended acquisition flow follows [D017](JOBTRI_DECISIONS.md#d017--filter-before-main-persistence):
+The intended workflow and acquisition pipeline follow [D017](JOBTRI_DECISIONS.md#d017--filter-before-main-persistence) and the Personal AI Job Assistant direction:
 
 ```text
-Acquire jobs
-→ minimal normalization required for filtering
-→ deduplication where applicable
-→ hard/manual filters
-→ persist relevant jobs to the main job store
+Job Target
+→ Job Sources
+→ Acquisition
+→ Normalization
+→ Hard Filtering
+→ Relevant Jobs
+→ Save / Track
+→ Application Assistance
 ```
 
-Initial hard filters are country, language, contract type, domain / target role, and required experience. Criteria are entered manually; CV parsing or CV-based matching is not needed to begin filtering.
+Job Sources include direct ATS / official company sources and job boards. Initial hard filters are country, language, contract type, domain / target role, and required experience. Criteria are entered manually; CV parsing or CV-based matching is not needed to begin filtering.
 
 Only relevant jobs should enter the main normalized Jobs store. Future temporary processing or raw-data staging must be identified separately from main persistence. This decision does not introduce a staging table, database, or retention policy.
 
@@ -158,6 +172,6 @@ These conventions describe approved direction without claiming universal formatt
 - ATS integration is represented by an application abstraction, but connector implementations are future work.
 - Human review and no mass auto-apply are adopted product constraints; no automated application workflow exists in the current code.
 
-## Planned architecture extensions
+## Planned entity and architecture roadmap
 
-The next MVP implementation is the adopted manual-criteria acquisition/filtering pipeline above. Broader normalization, cross-source deduplication, deterministic scoring, company discovery, additional source integrations, application tracking, analytics, CV parsing/matching, and AI-assisted analysis remain future work. They must not be described as implemented or all required for the initial MVP. See [Roadmap](JOBTRI_ROADMAP.md).
+The next MVP implementation is the personal workflow around manually entered job targets, relevant-job saving, and application tracking, followed by the acquisition/filtering pipeline above. Broader normalization, cross-source deduplication, deterministic scoring, company discovery, additional source integrations, CV parsing/matching, AI-assisted analysis, learning, and SaaS evolution remain future work. `JobTarget`, `SavedJob`, and application tracking must not be described as implemented. See [Roadmap](JOBTRI_ROADMAP.md).

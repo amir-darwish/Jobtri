@@ -2,7 +2,7 @@
 
 ## Project purpose
 
-Jobtri is intended to help a job seeker discover, normalize, prioritize, and track relevant opportunities from direct ATS / official company sources and job boards. Official ATS/company sources are preferred when available; generic scraping is not the primary acquisition strategy. It is a decision-support system. A human reviews opportunities before applying, and the product must not become a mass auto-apply bot.
+Jobtri is a Personal AI Job Assistant for one person validating a job-search workflow. Its core value is helping the user manage job search intent, opportunity discovery, relevance filtering, saving, application tracking, and application assistance. Job acquisition from direct ATS / official company sources and job boards enables that workflow; it is not the product's sole purpose. Official ATS/company sources are preferred when available, generic scraping is not the primary acquisition strategy, and a human reviews opportunities before applying.
 
 ## Current implementation
 
@@ -19,18 +19,32 @@ The following are not implemented in the current repository: ATS fetching, norma
 
 ## Adopted MVP scope and pipeline
 
-The initial user is the project owner or another developer/user running Jobtri from GitHub. The MVP does not require SaaS architecture, multi-tenancy, or complex user management. SaaS is a possible later evolution if the workflow proves useful.
-
-Start from manually entered job-search and filtering criteria. CV parsing and CV-based matching are later enhancements after validating basic acquisition/filtering, not initial MVP dependencies. AI analysis, auto-apply, SaaS features, and advanced learning are not MVP prerequisites; mass auto-apply remains prohibited.
-
-Follow the adopted acquisition pipeline:
+The initial user is one person running Jobtri locally or from GitHub. The MVP has no authentication, multi-user system, roles, subscriptions, or SaaS infrastructure. Its workflow is:
 
 ```text
-Acquire jobs
-→ minimal normalization required for filtering
-→ deduplication where applicable
-→ hard/manual filters
-→ persist relevant jobs to the main job store
+Job Target / Search Intent
+→ Find Opportunities
+→ Filter Relevant Jobs
+→ Save Interesting Jobs
+→ Track Applications
+→ Assist With Applications
+```
+
+`JobTarget`, `SavedJob`, and application tracking are planned concepts. SaaS is a possible later evolution if the personal workflow proves useful.
+
+Start from manually entered job-search and filtering criteria. CV parsing and CV-based matching are later enhancements after validating the personal workflow and basic acquisition/filtering, not initial MVP dependencies. AI analysis, the Learning Engine, auto-apply, SaaS features, and advanced learning are not MVP prerequisites; mass auto-apply remains prohibited.
+
+Follow the adopted workflow and acquisition pipeline:
+
+```text
+Job Target
+→ Job Sources
+→ Acquisition
+→ Normalization
+→ Hard Filtering
+→ Relevant Jobs
+→ Save / Track
+→ Application Assistance
 ```
 
 Initial hard filters are country, language, contract type, domain / target role, and required experience.

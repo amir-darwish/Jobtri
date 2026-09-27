@@ -97,6 +97,16 @@ Persist jobs relevant to the manually entered criteria in the main normalized Jo
 
 These are approved conventions, not a claim that every existing signature is formatted this way. This documentation update does not authorize code formatting or refactoring.
 
+### D020 — Personal AI Job Assistant Direction
+
+**Status:** Adopted
+**Date:** 2026-09-27
+**Decision:** Jobtri is initially a personal, single-user Personal AI Job Assistant. The MVP workflow is `Job Target / Search Intent → Find Opportunities → Filter Relevant Jobs → Save Interesting Jobs → Track Applications → Assist With Applications`. Existing Company, CompanySource, Job, Repository, Services, and API capabilities remain the foundation. `JobTarget`, `SavedJob`, and application tracking are planned workflow concepts. Job acquisition supports both direct ATS / official company sources and job boards, while acquisition remains an enabling capability rather than the product itself.
+
+**Rationale:** Validate whether Jobtri helps one person manage the job-search workflow before investing in SaaS concerns. The product value is the complete personal workflow from intent through application assistance, with aggregation serving that workflow. Manual criteria, hard filtering, and human review provide a useful foundation without requiring CV parsing, CV-based matching, AI analysis, learning, authentication, or multi-user infrastructure.
+
+**Consequences:** The MVP has no authentication, multi-user system, roles, subscriptions, or SaaS infrastructure. Personal workflow entities are planned before broader ATS and job-board connector expansion. CV parsing, CV-based matching, the Learning Engine, and SaaS features remain future phases. Human review remains required and mass auto-apply remains prohibited.
+
 ## Planned decisions
 
 ### D010 — ATS connector implementations

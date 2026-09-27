@@ -30,6 +30,13 @@ namespace Jobtri.Infrastructure.Persistence
                 return Set<Job>();
             }
         }
+        public DbSet<JobTarget> JobTargets
+        {
+            get
+            {
+                return Set<JobTarget>();
+            }
+        }
 
         public JobtriDbContext(DbContextOptions<JobtriDbContext> options) : base(options)
         {
@@ -42,6 +49,8 @@ namespace Jobtri.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());
             modelBuilder.ApplyConfiguration(new CompanySourceConfiguration());
             modelBuilder.ApplyConfiguration(new JobConfiguration());
+            modelBuilder.ApplyConfiguration(new JobTargetConfiguration());
+
         }
 
     }

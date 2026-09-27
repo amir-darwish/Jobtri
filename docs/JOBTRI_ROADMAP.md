@@ -4,11 +4,11 @@ This roadmap distinguishes verified implementation from planned work. It does no
 
 ## Adopted MVP scope
 
-The initial user is the project owner or another developer/user running Jobtri from GitHub. Start with manually entered job-search and filtering criteria. CV parsing and CV-based matching are later enhancements after acquisition/filtering is validated.
+Jobtri is initially a Personal AI Job Assistant for one person validating the job-search workflow. Start with a manually defined `JobTarget` / search intent, then help the user find, filter, save, track, and act on opportunities. CV parsing and CV-based matching are later enhancements after the personal workflow and acquisition/filtering are validated.
 
-Direct ATS / official company sources and job boards are permitted. Official ATS/company sources remain preferred when available; generic scraping is not the primary acquisition strategy. This does not require delivering every source category in the first slice.
+Direct ATS / official company sources and job boards are acquisition options that support the workflow. Official ATS/company sources remain preferred when available; generic scraping is not the primary acquisition strategy. This does not make Jobtri a simple job aggregator or require delivering every source category in the first slice.
 
-CV matching, AI analysis, auto-apply, SaaS architecture, multi-tenancy, complex user management, and advanced learning are not MVP prerequisites. SaaS is a possible later evolution if the workflow proves useful. Human review before applying and no mass auto-apply remain constraints.
+The MVP has no authentication, multi-user system, roles, subscriptions, or SaaS infrastructure. CV matching, AI analysis, advanced learning, and SaaS evolution are later phases. Human review before applying and no mass auto-apply remain constraints.
 
 ## Completed foundation
 
@@ -44,9 +44,11 @@ This prepares reliable storage; it does not authorize storing unfiltered acquire
 - Confirm handling of missing or ambiguous filter data before claiming full coverage.
 - Make filtering independent of CV parsing and CV-based matching.
 
-### 4. Deliver the first acquisition/filtering vertical slice
+### 4. Deliver the first personal workflow vertical slice
 
-- Select the first official ATS/company source and implement its connector behind the Application contract.
+- Define the first `JobTarget` / search-intent input and the personal workflow around relevant opportunities.
+- Support finding and filtering opportunities through the adopted acquisition boundary, including manually supplied source data while connectors remain planned.
+- Save relevant opportunities and establish the planned application-tracking flow.
 - Follow the adopted flow:
 
 ```text
@@ -61,28 +63,38 @@ Acquire jobs
 - Verify with representative matching and non-matching records that the filtering gate precedes main persistence; verify applicable duplicate handling.
 - Keep any future temporary raw processing/staging distinct from the main Jobs store. Staging is not a mandatory MVP component.
 
-**Ordering correction (2026-09-26):** [D017](JOBTRI_DECISIONS.md#d017--filter-before-main-persistence) supersedes this roadmap's earlier persistence-before-filtering sequence. Manual criteria and the filtering gate belong in this first workflow, not a later phase. Current direct-save behavior still needs implementation work.
+**Ordering correction (2026-09-26):** [D017](JOBTRI_DECISIONS.md#d017--filter-before-main-persistence) supersedes this roadmap's earlier persistence-before-filtering sequence. Manual criteria and the filtering gate belong in this first workflow, not a later phase. Current direct-save behavior still needs implementation work. Connector implementations follow the personal workflow foundation.
 
 ## Medium-term planned features
 
+### 1. Personal workflow entities
+
+- Define the planned `JobTarget` / search-intent concept.
+- Add the planned `SavedJob` concept for opportunities the user wants to keep.
+- Add application lifecycle tracking and the user workflow around saved opportunities.
+- Keep these concepts single-user and independent of authentication or SaaS infrastructure.
+
+### 2. Acquisition and processing expansion
+
+- Implement direct ATS / official company connectors behind `IAtsConnector`.
+- Add job-board integrations where they support the personal workflow.
 - Company careers-page discovery and ATS detection.
 - Broader normalization beyond the minimum needed for the initial filters.
 - More advanced cross-source deduplication beyond the applicable MVP checks.
 - Explainable deterministic scoring.
 - Background discovery with cancellation and failure isolation.
 - Structured logging, resilience, and health checks.
-- Application lifecycle tracking and CV-version association.
+- CV-version association when application tracking requires it.
 
 ## Longer-term planned features
 
-- AI-assisted job analysis after manual filtering and deterministic scoring.
+- AI-assisted job analysis after the personal workflow, manual filtering, and deterministic scoring are useful.
 - CV parsing and CV-based matching after the basic acquisition/filtering workflow has been validated.
 - CV and cover-letter tailoring with no invented qualifications.
 - Analytics for response, interview, and offer outcomes.
 - Outcome-driven learning improvements.
-- Additional official ATS/company integrations and job-board integrations.
 - Deployment automation and CI/CD.
-- Possible SaaS evolution only if the workflow proves useful and a later decision approves its scope.
+- Possible multi-user SaaS evolution only if the personal workflow proves useful and a later decision approves its scope.
 
 ## Explicit constraints
 
