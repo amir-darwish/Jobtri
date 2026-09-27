@@ -3,6 +3,7 @@ using System;
 using Jobtri.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Jobtri.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(JobtriDbContext))]
-    partial class JobtriDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260927184605_FixJobLastSeenAtDefault")]
+    partial class FixJobLastSeenAtDefault
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
