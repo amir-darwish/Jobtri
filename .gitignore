@@ -484,3 +484,6 @@ $RECYCLE.BIN/
 
 # env
 .env.*
+
+# codegraph
+.codegraph
