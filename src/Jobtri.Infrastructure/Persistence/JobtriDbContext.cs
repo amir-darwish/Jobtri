@@ -38,6 +38,14 @@ namespace Jobtri.Infrastructure.Persistence
             }
         }
 
+        public DbSet<SavedJob> SavedJobs
+        {
+            get
+            {
+                return Set<SavedJob>();
+            }
+        }
+
         public JobtriDbContext(DbContextOptions<JobtriDbContext> options) : base(options)
         {
         }
@@ -50,6 +58,8 @@ namespace Jobtri.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new CompanySourceConfiguration());
             modelBuilder.ApplyConfiguration(new JobConfiguration());
             modelBuilder.ApplyConfiguration(new JobTargetConfiguration());
+            modelBuilder.ApplyConfiguration(new SavedJobConfiguration());
+
 
         }
 
