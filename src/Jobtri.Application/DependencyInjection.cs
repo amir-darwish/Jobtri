@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Jobtri.Application
 {
@@ -9,6 +9,8 @@ namespace Jobtri.Application
             services.AddScoped<Companies.CompanyService>();
             services.AddScoped<CompanySources.CompanySourceService>();
             services.AddScoped<Jobs.JobService>();
+            services.AddScoped<JobTargets.JobTargetService>();
+            services.AddScoped<SavedJobs.SavedJobService>();
             return services;
         }
     }

@@ -1,4 +1,4 @@
-﻿using Jobtri.Application.Abstractions.Persistence;
+using Jobtri.Application.Abstractions.Persistence;
 using Jobtri.Infrastructure.Persistence.Repositories;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +13,7 @@ namespace Jobtri.Infrastructure
             services.AddScoped<ICompanySourceRepository, CompanySourceRepository>();
             services.AddScoped<IJobRepository, JobRepository>();
             services.AddScoped<IJobTargetRepository, JobTargetRepository>();
+            services.AddScoped<ISavedJobRepository, SavedJobRepository>();
 
             return services;
         }
